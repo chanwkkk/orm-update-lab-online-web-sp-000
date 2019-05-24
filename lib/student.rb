@@ -58,6 +58,17 @@ end
     Student.new(row[0],row[1],row[2])
   end
 
+  def self.find_by_name(name)
+    sql=<<-SQL
+      SELECT * FROM students
+      WHERE name=?
+    SQL
+
+    row=DB[:conn].execute(sql,name)[0]
+    Student.new_from_db(row)
+  end
+
+
 
 
 
